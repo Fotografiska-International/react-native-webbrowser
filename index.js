@@ -33,6 +33,7 @@ const propTypes = {
     onNavigationStateChange: PropTypes.func,
     onShouldStartLoadWithRequest: PropTypes.func,
     startInLoadingState: PropTypes.bool,
+    onMessage: PropTypes.func,
 }
 
 const defaultProps = {
@@ -45,6 +46,7 @@ const defaultProps = {
     onNavigationStateChange: ()=>{},
     onShouldStartLoadWithRequest: ()=>true,
     startInLoadingState:false,
+    onMessage:null,
 }
 
 class Webbrowser extends BaseComponent {
@@ -60,7 +62,6 @@ class Webbrowser extends BaseComponent {
             homeButtonEnabled: true,
             loading: true,
             scalesPageToFit: true,
-            onMessage: this.props.onMessage
         };
 
         this._bind(
@@ -146,7 +147,7 @@ class Webbrowser extends BaseComponent {
                     onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
                     startInLoadingState={this.props.startInLoadingState}
                     scalesPageToFit={this.state.scalesPageToFit}
-                    onMessage={this.state.onMessage}
+                    onMessage={this.props.onMessage}
                 />
                 {this.renderToolbar()}
                 <Spinner visible={this.state.loading} />
