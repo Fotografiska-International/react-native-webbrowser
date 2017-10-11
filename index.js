@@ -31,7 +31,8 @@ const propTypes = {
     foregroundColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     onNavigationStateChange: PropTypes.func,
-    onShouldStartLoadWithRequest: PropTypes.func
+    onShouldStartLoadWithRequest: PropTypes.func,
+    startInLoadingState: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -42,7 +43,8 @@ const defaultProps = {
     hideHomeButton: false,
     hideActivityIndicator: false,
     onNavigationStateChange: ()=>{},
-    onShouldStartLoadWithRequest: ()=>true
+    onShouldStartLoadWithRequest: ()=>true,
+    startInLoadingState:false,
 }
 
 class Webbrowser extends BaseComponent {
@@ -142,7 +144,7 @@ class Webbrowser extends BaseComponent {
                     decelerationRate="normal"
                     onNavigationStateChange={this.onNavigationStateChange}
                     onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
-                    startInLoadingState={true}
+                    startInLoadingState={this.props.startInLoadingState}
                     scalesPageToFit={this.state.scalesPageToFit}
                     onMessage={this.state.onMessage}
                 />
